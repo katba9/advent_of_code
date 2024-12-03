@@ -9,7 +9,6 @@ def multiply(data):
     for item in list:
         no1, no2 = item[4:-1].split(",")
         multiplied_list.append(int(no1)*int(no2))
-    
     return sum(multiplied_list)
 
 substring = "do"
@@ -44,7 +43,5 @@ while start < len(data):
             flag = False
     start += len(substring)
 joined_data = "".join(list)
-
-print(joined_data)
 
 print(f"\n\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{multiply(text_data)} ⋆ ₊* ❅ ˚    \n\033[0m\n\n\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{multiply(joined_data)} ⋆ ₊* ❅ ˚    \n\033[0m\n")
