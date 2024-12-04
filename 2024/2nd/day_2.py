@@ -35,4 +35,4 @@ def count(data):
     return part1_count, part2_count
 
 count1, count2 = count(data)
-print(f"\n\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{count1} ⋆ ₊* ❅ ˚    \n\033[0m\n\n\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{count1} ⋆ ₊* ❅ ˚    \n\033[0m\n")
+print(f"\n\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{count1} ⋆ ₊* ❅ ˚    \n\033[0m\n\n\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{count2} ⋆ ₊* ❅ ˚    \n\033[0m\n")
