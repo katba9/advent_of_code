@@ -1,4 +1,7 @@
 import re
+import time
+
+start_time = time.time()
 
 with open("2024/3rd/corrupt.txt", encoding='utf8') as file:
     text_data = file.read()
@@ -45,3 +48,7 @@ while start < len(data):
 joined_data = "".join(list)
 
 print(f"\n\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{multiply(text_data)} ⋆ ₊* ❅ ˚    \n\033[0m\n\n\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{multiply(joined_data)} ⋆ ₊* ❅ ˚    \n\033[0m\n")
+
+end_time = time.time()
+
+print(f"Execution time: {end_time - start_time} seconds")
