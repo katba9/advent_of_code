@@ -8,6 +8,7 @@ operation_dict = {
     "L": lambda x, y: x - y
 }
 
+# Part 1
 count = 0
 code = 50
 start_time = time.time()
@@ -15,13 +16,14 @@ start_time = time.time()
 for instr in instructions:
     operation = operation_dict[instr[0].upper()]
     code = operation(code, int(instr[1:]))
-    if code == 0 or str(code).endswith("00"):
-        count = count + 1
+    if code % 100 == 0:
+        count += 1
 
 
 print(f"\n\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{count} ⋆ ₊* ❅ ˚    ⏱︎  -> {round((time.time() - start_time), 6)} \n\033[0m\n")
 
 
+# Part 2
 count = 0
 code = 50
 start_time = time.time()
@@ -36,11 +38,11 @@ for instr in instructions:
 
     if previous_code > 0:
         if change < 0 and code <= rotations*-100:
-            rotations = rotations + 1
+            rotations += 1
         if change > 0  and code >= (rotations + 1)*100:
-            rotations = rotations + 1
+            rotations += 1
 
-    count = count + rotations
+    count += rotations
 
     final_num = int(str(code)[-2:])
     if code < 0:
@@ -50,3 +52,39 @@ for instr in instructions:
 
 
 print(f"\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{count} ⋆ ₊* ❅ ˚   ⏱︎  -> {round((time.time() - start_time), 6)} \n\033[0m\n")
+
+
+# Part 1 & Part 2 together
+count = 0
+count2 = 0
+code = 50
+start_time = time.time()
+
+for instr in instructions:
+    previous_code = code
+    num_change = int(instr[1:])
+    rotations = int(num_change/100)
+
+    if instr[0] == "R":
+        code += num_change
+        if previous_code > 0 and code >= (rotations + 1)*100:
+            rotations += 1
+
+    if instr[0] == "L":
+        code -= num_change
+        if previous_code > 0 and code <= rotations*-100:
+            rotations += 1
+
+    count += rotations
+
+    if code % 100 == 0:
+        count2 += 1
+
+    final_num = int(str(code)[-2:])
+    if code < 0:
+        code = 100 - abs(final_num) if final_num != 0 else 0
+    else:
+        code = final_num
+
+
+print(f"\033[44m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{count2}\033[0m\33[44m  &  Part 2: \33[1m{count}\033[0m\33[44m ⋆ ₊* ❅ ˚   \33[1m⏱︎  -> {round((time.time() - start_time), 6)}\n\033[0m\n\n")
