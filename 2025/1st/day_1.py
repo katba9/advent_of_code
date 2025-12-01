@@ -34,14 +34,11 @@ for instr in instructions:
     rotations = int(num_change/100)
     change = code - previous_code
 
-    if change < 0 and previous_code > 0 and code <= (rotations)*-100:
-        rotations = rotations + 1
-    if change < 0 and previous_code < 0 and code <= (rotations + 1)*-100:
-        rotations = rotations + 1
-    if change > 0 and previous_code < 0 and code >= (rotations)*100:
-        rotations = rotations + 1
-    if change > 0 and previous_code > 0 and code >= (rotations + 1)*100:
-        rotations = rotations + 1
+    if previous_code > 0:
+        if change < 0 and code <= rotations*-100:
+            rotations = rotations + 1
+        if change > 0  and code >= (rotations + 1)*100:
+            rotations = rotations + 1
 
     count = count + rotations
 
