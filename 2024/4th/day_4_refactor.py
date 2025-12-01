@@ -33,24 +33,24 @@ def run_word_search(word, file_path):
             direction.pop([])
         for x, y in direction:
 
-        if col+(len(word)-1) < len(grid):
-            find_word(row, col, [0,1], word, grid)
-            if row+(len(word)-1) < len(grid):
-                find_word(row, col, [1,1], word, grid)
-            if row-(len(word)-1) > -1:
-                find_word(row, col, [-1,1], word, grid)
+            if col+(len(word)-1) < len(grid):
+                find_word(row, col, [0,1], word, grid)
+                if row+(len(word)-1) < len(grid):
+                    find_word(row, col, [1,1], word, grid)
+                if row-(len(word)-1) > -1:
+                    find_word(row, col, [-1,1], word, grid)
 
-        if col-(len(word)-1) > -1:
-            find_word(row, col, [0,-1], word, grid)
-            if row+(len(word)-1) < len(grid):
-                find_word(row, col, [1,-1], word, grid)
-            if row-(len(word)-1) > -1:
-                find_word(row, col, [-1,-1], word, grid)
+            if col-(len(word)-1) > -1:
+                find_word(row, col, [0,-1], word, grid)
+                if row+(len(word)-1) < len(grid):
+                    find_word(row, col, [1,-1], word, grid)
+                if row-(len(word)-1) > -1:
+                    find_word(row, col, [-1,-1], word, grid)
 
-        if row+(len(word)-1) < len(grid):
-            find_word(row, col, [1,0], word, grid)
-        if row-(len(word)-1) > -1:
-            find_word(row, col, [-1,0], word, grid)
+            if row+(len(word)-1) < len(grid):
+                find_word(row, col, [1,0], word, grid)
+            if row-(len(word)-1) > -1:
+                find_word(row, col, [-1,0], word, grid)
         
 run_word_search(word, file_path)
 print(f"Result:{len(counter)}")
