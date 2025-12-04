@@ -39,7 +39,7 @@ m = matrix_b.copy()
 total = 0
 while True:
     count_list = [access_rolls(idx, x, m) for idx, x in np.ndenumerate(m)]
-    counts = sum([x for x in count_list if x == 1])
+    counts = sum(count_list)
     if counts == 0:
         break
     for idx, count in enumerate(count_list):
@@ -58,7 +58,7 @@ total2 = 0
 count1 = True
 while True:
     count_list = [access_rolls(idx, x, m) for idx, x in np.ndenumerate(m)]
-    counts = sum([x for x in count_list if x == 1])
+    counts = sum(count_list)
     if counts == 0:
         break
     for idx, count in enumerate(count_list):
