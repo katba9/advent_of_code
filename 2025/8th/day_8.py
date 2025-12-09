@@ -40,23 +40,23 @@ def connect_boxes(conns):
 #Part 1
 start_time = time.time()
 boxes = [[int(x) for x in box.split(",")] for box in boxes]
-closest_distance = {}
-[closest_distance.update({f"{b1}-{b2}": (((b2[0]-b1[0])**2 + (b2[1]-b1[1])**2 + (b2[2]-b1[2])**2)**0.5)
-                          for b2 in boxes[i+1:]}) for i, b1 in enumerate(boxes.copy())]
 
-sorted_dict = dict(sorted(closest_distance.items(), key=lambda item: item[1]))
-conns = [k.split("-") for k in sorted_dict.keys()]
+closest_distance = []
+for i, b1 in enumerate(boxes):
+    for b2 in boxes[i+1:]:
+        closest_distance.append([b1, b2]) 
 
+conns = sorted(closest_distance, key=lambda item: (item[1][0]-item[0][0])**2 + (item[1][1]-item[0][1])**2 + (item[1][2]-item[0][2])**2)
 
 circuits = connect_boxes(conns[:1000])
 counts = [len(c) for c in circuits.values()]
 counts.sort()
-counts = counts[-3]*counts[-2]*counts[-1]
-print(f"\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{counts} ⋆ ₊* ❅ ˚    ⏱︎  -> {round((time.time() - start_time), 6)} \n\033[0m")
+count = counts[-3]*counts[-2]*counts[-1]
+print(f"\33[42m\n\n    * ❆ ₊˚⋆ Part 1: \33[1m{count} ⋆ ₊* ❅ ˚    ⏱︎  -> {round((time.time() - start_time), 6)} \n\033[0m")
 
 
 # Part 2
 start_time = time.time()
 last_connection = connect_boxes(conns)
-total = int(last_connection[0].split(",")[0][1:]) * int(last_connection[1].split(",")[0][1:])
+total = last_connection[0][0] * last_connection[1][0]
 print(f"\33[41m\n\n    * ❆ ₊˚⋆ Part 2: \33[1m{total} ⋆ ₊* ❅ ˚   ⏱︎  -> {time.time() - start_time} \n\033[0m")
